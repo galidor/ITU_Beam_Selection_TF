@@ -12,13 +12,13 @@ if __name__ == '__main__':
                            "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/lidar_input/lidar_validation.npz"]
     beam_training_path = ["/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/beam_output/beams_output_train.npz",
                           "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/beam_output/beams_output_validation.npz"]
-    training_data = LidarDataset2D(lidar_training_path, beam_training_path)
+    training_data = LidarDataset3D(lidar_training_path, beam_training_path)
 
     lidar_test_path = "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/lidar_input/lidar_test.npz"
     beam_test_path = "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/beam_output/beams_output_test.npz"
-    test_data = LidarDataset2D(lidar_test_path, beam_test_path)
+    test_data = LidarDataset3D(lidar_test_path, beam_test_path)
 
-    model = Lidar2D
+    model = LidarMarcus
     loss_fn = lambda y_true, y_pred: -tf.reduce_sum(tf.reduce_mean(y_true[y_pred>0] * tf.math.log(y_pred[y_pred>0]), axis=0))
 
     top1 = tf.keras.metrics.TopKCategoricalAccuracy(k=1, name='top_1_categorical_accuracy', dtype=None)
@@ -28,14 +28,8 @@ if __name__ == '__main__':
     scheduler = lambda epoch, lr: lr if epoch < 10 else lr/10.
     callback = tf.keras.callbacks.LearningRateScheduler(scheduler)
 
-
-
     model.compile(optimizer=optim, loss=loss_fn, metrics=[top1, top10])
     model.fit(training_data.lidar_data, training_data.beam_output, callbacks=callback, batch_size=16, epochs=20)
     model.evaluate(test_data.lidar_data, test_data.beam_output)
-    # Calculate throughput ratio
-    test_preds = model.predict(test_data.lidar_data, batch_size=100)
-    test_preds_idx = np.argsort(test_preds, axis=1)
-    print(np.sum(np.take_along_axis(test_data.beam_output_true, test_preds_idx, axis=1)[:, -1])/np.sum(np.max(test_data.beam_output_true, axis=1)))
 
 

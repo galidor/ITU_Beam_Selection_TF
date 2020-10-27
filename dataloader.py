@@ -8,23 +8,61 @@ class LidarDataset2D(object):
         if isinstance(lidar_data_path, list) and isinstance(beam_data_path, list):
             lidar_data = None
             beam_output = None
+            beam_output_true = None
             for lidar_path, beam_path in zip(lidar_data_path, beam_data_path):
                 if lidar_data is not None and beam_output is not None:
                     lidar_data = np.concatenate([lidar_data, lidar_to_2d(lidar_path)], axis=0)
                     beam_output = np.concatenate([beam_output, get_beam_output(beam_path)[0]], axis=0)
+                    beam_output_true = np.concatenate([beam_output_true, get_beam_output(beam_path, threshold=np.inf)[0]], axis=0)
+
                 else:
                     lidar_data = lidar_to_2d(lidar_path)
                     beam_output = get_beam_output(beam_path)[0]
+                    beam_output_true = get_beam_output(beam_path, threshold=np.inf)[0]
 
         else:
             lidar_data = lidar_to_2d(lidar_data_path)
             if beam_data_path is None:
                 beam_output = np.zeros((lidar_data.shape[0], 256))
+                beam_output_true = np.zeros((lidar_data.shape[0], 256))
             else:
                 beam_output = get_beam_output(beam_data_path)[0]
+                beam_output_true = get_beam_output(beam_data_path, threshold=np.inf)[0]
 
-        self.lidar_data = lidar_data
+        self.lidar_data = np.expand_dims(lidar_data, 1)
         self.beam_output = beam_output
+        self.beam_output_true = beam_output_true
+
+
+class LidarDataset3D(object):
+    def __init__(self, lidar_data_path, beam_data_path):
+        # this allows us to merge multiple dsets into one
+        if isinstance(lidar_data_path, list) and isinstance(beam_data_path, list):
+            lidar_data = None
+            beam_output = None
+            beam_output_true = None
+            for lidar_path, beam_path in zip(lidar_data_path, beam_data_path):
+                if lidar_data is not None and beam_output is not None:
+                    lidar_data = np.concatenate([lidar_data, np.load(lidar_path)['input']], axis=0)
+                    beam_output = np.concatenate([beam_output, get_beam_output(beam_path)[0]], axis=0)
+                    beam_output_true = np.concatenate([beam_output_true, get_beam_output(beam_path, threshold=np.inf)[0]], axis=0)
+                else:
+                    lidar_data = np.load(lidar_path)['input']
+                    beam_output = get_beam_output(beam_path)[0]
+                    beam_output_true = get_beam_output(beam_path, threshold=np.inf)[0]
+
+        else:
+            lidar_data = np.load(lidar_data_path)['input']
+            if beam_data_path is None:
+                beam_output = np.zeros((lidar_data.shape[0], 256))
+                beam_output_true = np.zeros((lidar_data.shape[0], 256))
+            else:
+                beam_output = get_beam_output(beam_data_path)[0]
+                beam_output_true = get_beam_output(beam_data_path, threshold=np.inf)[0]
+
+        self.lidar_data = np.transpose(lidar_data, (0, 3, 1, 2))
+        self.beam_output = beam_output
+        self.beam_output_true = beam_output_true
 
 
 def beams_log_scale(y, thresholdBelowMax):
@@ -42,8 +80,8 @@ def beams_log_scale(y, thresholdBelowMax):
     return y
 
 
-def get_beam_output(output_file):
-    thresholdBelowMax = 6
+def get_beam_output(output_file, threshold=6):
+    thresholdBelowMax = threshold
 
     output_cache_file = np.load(output_file)
     yMatrix = output_cache_file['output_classification']
@@ -78,4 +116,11 @@ def lidar_to_2d(lidar_data_path):
     lidar_data1[np.max(lidar_data == -1, axis=-1)] = -1
 
     return lidar_data1
+
+
+if __name__ == '__main__':
+    lidar_test_path = "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/lidar_input/lidar_test.npz"
+    beam_test_path = "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/beam_output/beams_output_test.npz"
+    dataset = LidarDataset2D(lidar_test_path, beam_test_path)
+    print(dataset.beam_output_true)
 
