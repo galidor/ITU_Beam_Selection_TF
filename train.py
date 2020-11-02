@@ -3,6 +3,7 @@ import sys
 import tensorflow as tf
 from tensorflow.keras import losses, optimizers
 import numpy as np
+from keras_flops import get_flops
 
 from dataloader import LidarDataset2D, LidarDataset3D
 from models import Lidar2D, LidarMarcus
@@ -18,6 +19,9 @@ if __name__ == '__main__':
     beam_test_path = "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/beam_output/beams_output_test.npz"
     test_data = LidarDataset2D(lidar_test_path, beam_test_path)
 
+    training_data.lidar_data = np.transpose(training_data.lidar_data, (0, 2, 3, 1))
+    test_data.lidar_data = np.transpose(test_data.lidar_data, (0, 2, 3, 1))
+
     model = Lidar2D
     loss_fn = lambda y_true, y_pred: -tf.reduce_sum(tf.reduce_mean(y_true[y_pred>0] * tf.math.log(y_pred[y_pred>0]), axis=0))
 
@@ -31,11 +35,14 @@ if __name__ == '__main__':
 
 
     model.compile(optimizer=optim, loss=loss_fn, metrics=[top1, top10])
+    model.summary()
     model.fit(training_data.lidar_data, training_data.beam_output, callbacks=callback, batch_size=16, epochs=20)
     model.evaluate(test_data.lidar_data, test_data.beam_output)
     # Calculate throughput ratio
     test_preds = model.predict(test_data.lidar_data, batch_size=100)
     test_preds_idx = np.argsort(test_preds, axis=1)
-    print(np.sum(np.take_along_axis(test_data.beam_output_true, test_preds_idx, axis=1)[:, -1])/np.sum(np.max(test_data.beam_output_true, axis=1)))
+    # print(np.sum(np.take_along_axis(test_data.beam_output_true, test_preds_idx, axis=1)[:, -1])/np.sum(np.max(test_data.beam_output_true, axis=1)))
+    print(np.sum(np.log2(np.max(np.take_along_axis(test_data.beam_output_true, test_preds_idx, axis=1)[:, -10:], axis=1) + 1.0))/
+          np.sum(np.log2(np.max(test_data.beam_output_true, axis=1) + 1.0)))
 
 

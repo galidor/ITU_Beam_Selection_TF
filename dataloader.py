@@ -13,12 +13,12 @@ class LidarDataset2D(object):
                 if lidar_data is not None and beam_output is not None:
                     lidar_data = np.concatenate([lidar_data, lidar_to_2d(lidar_path)], axis=0)
                     beam_output = np.concatenate([beam_output, get_beam_output(beam_path)[0]], axis=0)
-                    beam_output_true = np.concatenate([beam_output_true, get_beam_output(beam_path, threshold=np.inf)[0]], axis=0)
+                    beam_output_true = np.concatenate([beam_output_true, get_beam_output_no_normalization(beam_path, threshold=np.inf)[0]], axis=0)
 
                 else:
                     lidar_data = lidar_to_2d(lidar_path)
                     beam_output = get_beam_output(beam_path)[0]
-                    beam_output_true = get_beam_output(beam_path, threshold=np.inf)[0]
+                    beam_output_true = get_beam_output_no_normalization(beam_path, threshold=np.inf)[0]
 
         else:
             lidar_data = lidar_to_2d(lidar_data_path)
@@ -27,7 +27,7 @@ class LidarDataset2D(object):
                 beam_output_true = np.zeros((lidar_data.shape[0], 256))
             else:
                 beam_output = get_beam_output(beam_data_path)[0]
-                beam_output_true = get_beam_output(beam_data_path, threshold=np.inf)[0]
+                beam_output_true = get_beam_output_no_normalization(beam_data_path, threshold=np.inf)[0]
 
         self.lidar_data = np.expand_dims(lidar_data, 1)
         self.beam_output = beam_output
@@ -45,11 +45,11 @@ class LidarDataset3D(object):
                 if lidar_data is not None and beam_output is not None:
                     lidar_data = np.concatenate([lidar_data, np.load(lidar_path)['input']], axis=0)
                     beam_output = np.concatenate([beam_output, get_beam_output(beam_path)[0]], axis=0)
-                    beam_output_true = np.concatenate([beam_output_true, get_beam_output(beam_path, threshold=np.inf)[0]], axis=0)
+                    beam_output_true = np.concatenate([beam_output_true, get_beam_output_no_normalization(beam_path, threshold=np.inf)[0]], axis=0)
                 else:
                     lidar_data = np.load(lidar_path)['input']
                     beam_output = get_beam_output(beam_path)[0]
-                    beam_output_true = get_beam_output(beam_path, threshold=np.inf)[0]
+                    beam_output_true = get_beam_output_no_normalization(beam_path, threshold=np.inf)[0]
 
         else:
             lidar_data = np.load(lidar_data_path)['input']
@@ -58,7 +58,7 @@ class LidarDataset3D(object):
                 beam_output_true = np.zeros((lidar_data.shape[0], 256))
             else:
                 beam_output = get_beam_output(beam_data_path)[0]
-                beam_output_true = get_beam_output(beam_data_path, threshold=np.inf)[0]
+                beam_output_true = get_beam_output_no_normalization(beam_data_path, threshold=np.inf)[0]
 
         self.lidar_data = np.transpose(lidar_data, (0, 3, 1, 2))
         self.beam_output = beam_output
@@ -101,6 +101,28 @@ def get_beam_output(output_file, threshold=6):
                 y[i, tx * Rx_size + rx] = codebook[rx, tx]  # impose ordering
 
     y = beams_log_scale(y, thresholdBelowMax)
+
+    return y, num_classes
+
+
+def get_beam_output_no_normalization(output_file, threshold=6):
+    thresholdBelowMax = threshold
+
+    output_cache_file = np.load(output_file)
+    yMatrix = output_cache_file['output_classification']
+
+    yMatrix = np.abs(yMatrix)
+    num_classes = yMatrix.shape[1] * yMatrix.shape[2]
+
+    # new ordering of the beams, provided by the Organizers
+    y = np.zeros((yMatrix.shape[0], num_classes))
+    for i in range(0, yMatrix.shape[0], 1):  # go over all examples
+        codebook = np.absolute(yMatrix[i, :])  # read matrix
+        Rx_size = codebook.shape[0]  # 8 antenna elements
+        Tx_size = codebook.shape[1]  # 32 antenna elements
+        for tx in range(0, Tx_size, 1):
+            for rx in range(0, Rx_size, 1):  # inner loop goes over receiver
+                y[i, tx * Rx_size + rx] = codebook[rx, tx]  # impose ordering
 
     return y, num_classes
 
