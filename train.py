@@ -42,7 +42,16 @@ if __name__ == '__main__':
     test_preds = model.predict(test_data.lidar_data, batch_size=100)
     test_preds_idx = np.argsort(test_preds, axis=1)
     # print(np.sum(np.take_along_axis(test_data.beam_output_true, test_preds_idx, axis=1)[:, -1])/np.sum(np.max(test_data.beam_output_true, axis=1)))
-    print(np.sum(np.log2(np.max(np.take_along_axis(test_data.beam_output_true, test_preds_idx, axis=1)[:, -10:], axis=1) + 1.0))/
-          np.sum(np.log2(np.max(test_data.beam_output_true, axis=1) + 1.0)))
 
+    top_k = np.zeros(100)
+    throughput_ratio_at_k = np.zeros(100)
+    correct = 0
+    for i in range(100):
+        correct += np.sum(test_preds_idx[:, -1-i] == np.argmax(test_data.beam_output, axis=1))
+        top_k[i] = correct/test_data.beam_output.shape[0]
+        throughput_ratio_at_k[i] = np.sum(np.log2(np.max(np.take_along_axis(test_data.beam_output_true, test_preds_idx, axis=1)[:, -1-i:], axis=1) + 1.0))/\
+                                   np.sum(np.log2(np.max(test_data.beam_output_true, axis=1) + 1.0))
 
+    # print(top_k)
+    # print(throughput_ratio_at_k)
+    np.savez("proposed.npz", classification=top_k, throughput_ratio=throughput_ratio_at_k)
