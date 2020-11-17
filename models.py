@@ -2,22 +2,22 @@ from tensorflow.keras import layers, models, initializers
 
 Lidar2D = models.Sequential([
     layers.Input(shape=(20, 200, 1)),
-    layers.Conv2D(10, 3, 1, padding='same', kernel_initializer=initializers.HeUniform),
+    layers.Conv2D(5, 3, 1, padding='same', kernel_initializer=initializers.HeUniform),
     layers.BatchNormalization(axis=3),
     layers.PReLU(shared_axes=[1, 2]),
-    layers.Conv2D(10, 3, 1, padding='same', kernel_initializer=initializers.HeUniform),
+    layers.Conv2D(5, 3, 1, padding='same', kernel_initializer=initializers.HeUniform),
     layers.BatchNormalization(axis=3),
     layers.PReLU(shared_axes=[1, 2]),
-    layers.Conv2D(10, 3, 2, padding='same', kernel_initializer=initializers.HeUniform),
+    layers.Conv2D(5, 3, 2, padding='same', kernel_initializer=initializers.HeUniform),
     layers.BatchNormalization(axis=3),
     layers.PReLU(shared_axes=[1, 2]),
-    layers.Conv2D(10, 3, 1, padding='same', kernel_initializer=initializers.HeUniform),
+    layers.Conv2D(5, 3, 1, padding='same', kernel_initializer=initializers.HeUniform),
     layers.BatchNormalization(axis=3),
     layers.PReLU(shared_axes=[1, 2]),
-    layers.Conv2D(10, 3, 2, padding='same', kernel_initializer=initializers.HeUniform),
+    layers.Conv2D(5, 3, 2, padding='same', kernel_initializer=initializers.HeUniform),
     layers.BatchNormalization(axis=3),
     layers.PReLU(shared_axes=[1, 2]),
-    layers.Conv2D(10, 3, (1, 2), padding='same', kernel_initializer=initializers.HeUniform),
+    layers.Conv2D(1, 3, (1, 2), padding='same', kernel_initializer=initializers.HeUniform),
     layers.BatchNormalization(axis=3),
     layers.PReLU(shared_axes=[1, 2]),
     layers.Flatten(),
@@ -46,3 +46,7 @@ LidarMarcus = models.Sequential([
     layers.Flatten(),
     layers.Dense(256, activation='softmax')
 ])
+
+if __name__ == '__main__':
+    model = Lidar2D
+    model.summary()
