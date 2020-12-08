@@ -54,6 +54,8 @@ $ python beam_test_model.py --lidar_test_data <path to the LIDAR baseline test .
                              --preds_csv_path <path, where you want your .csv file with the predictions to be stored>
 ```
 
+## Federated learning
+
 ## Questions?
 If you have any further questions related to this repo, feel free to contact me at mikolaj.jankowski17@imperial.ac.uk or raise an Issue within this repo. I'll do my best to reply as soon as possible.
    
