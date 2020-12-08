@@ -8,7 +8,7 @@
 <b>Supervising faculty member</b>: Dr. Deniz Gunduz, Imperial College London, Email: d.gunduz@imperial.ac.uk
 
 <b>Team members</b>:
-* Mr. Mahdi Boloursaz Mashhadi (PostDoc Team Leader), Imperial College London, Email: m.boloursaz-mashhadi@imperial.ac.uk
+* Dr. Mahdi Boloursaz Mashhadi (PostDoc Team Leader), Imperial College London, Email: m.boloursaz-mashhadi@imperial.ac.uk
 * Mr. Tze-Yang Tung, Imperial College London, Email: tze-yang.tung14@imperial.ac.uk
 * Mr. Mikolaj Jankowski, Imperial College London, Email: mikolaj.jankowski17@imperial.ac.uk
 * Mr. Szymon Kobus, Imperial College London, Email: szymon.kobus17@imperial.ac.uk
