@@ -47,6 +47,7 @@ LidarMarcus = models.Sequential([
     layers.Dense(256, activation='softmax')
 ])
 
+
 if __name__ == '__main__':
     model = Lidar2D
     model.summary()

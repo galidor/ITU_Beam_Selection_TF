@@ -138,11 +138,3 @@ def lidar_to_2d(lidar_data_path):
     lidar_data1[np.max(lidar_data == -1, axis=-1)] = -1
 
     return lidar_data1
-
-
-if __name__ == '__main__':
-    lidar_test_path = "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/lidar_input/lidar_test.npz"
-    beam_test_path = "/home/galidor/Documents/ITU_Beam_Selection/data/baseline_data/beam_output/beams_output_test.npz"
-    dataset = LidarDataset2D(lidar_test_path, beam_test_path)
-    print(dataset.beam_output_true)
-

@@ -51,7 +51,7 @@ if __name__ == '__main__':
     callback = tf.keras.callbacks.LearningRateScheduler(scheduler)
 
     model.compile(optimizer=optim, loss=loss_fn, metrics=[top1, top5, top10])
-    model.fit(train_data.lidar_data, train_data.beam_output, callbacks=callback, batch_size=16, epochs=20)
+    model.fit(train_data.lidar_data, train_data.beam_output, callbacks=callback, batch_size=16, epochs=1)
     model.evaluate(validation_data.lidar_data, validation_data.beam_output)
 
-    model.save(args.model_path)
+    model.save_weights(args.model_path)

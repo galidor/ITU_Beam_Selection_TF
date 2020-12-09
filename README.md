@@ -56,6 +56,17 @@ $ python beam_test_model.py --lidar_test_data <path to the LIDAR baseline test .
 
 ## Federated learning
 
+In order to evaluate our code in the federated learning setup, please run the following code:
+
+```
+$ python federated_beam.py
+```
+
+Please note, that all the training and validation .npz files have to be copied to the same folder as the code. We particularly use the following files:
+* lidar_input_train.npz and lidar_input_validation.npz from Raymobtime s008
+* beams_output_train.npz and beams_output_validation.npz from Raymobtime s008
+* lidar_input_test.npz and beams_output_test.npz from Raymobtime s009
+
 ## Questions?
 If you have any further questions related to this repo, feel free to contact me at mikolaj.jankowski17@imperial.ac.uk or raise an Issue within this repo. I'll do my best to reply as soon as possible.
    
