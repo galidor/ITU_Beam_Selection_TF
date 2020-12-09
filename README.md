@@ -5,7 +5,7 @@
 ## Authors
 <b>Team Name:</b> Imperial_IPC1
 
-<b>Supervising faculty member</b>: Dr. Deniz Gunduz, Imperial College London, Email: d.gunduz@imperial.ac.uk
+<b>Supervising faculty member</b>: Prof. Deniz Gunduz, Imperial College London, Email: d.gunduz@imperial.ac.uk
 
 <b>Team members</b>:
 * Dr. Mahdi Boloursaz Mashhadi (PostDoc Team Leader), Imperial College London, Email: m.boloursaz-mashhadi@imperial.ac.uk
@@ -22,7 +22,7 @@ Since our code usues GPU acceleration, having CUDA capable device would be highl
 
 If you prefer to use PyTorch, you can check our other repository: https://github.com/galidor/ITU_Beam_Selection.git
 
-## Source files:
+## Source files
 There are 4 Python files in this repo, requirements.txt, and this README file:
 * models.py - definition of our model called Baseline2D.
 * dataset.py - dataset preprocessing required by TF, along with our own preprocessing steps that transform 3D baseline data to 2D representations. Please note, even though we don't use the baseline features, it is not required to perform any preprocessing, as our code does it directly before the training/testing with a very small computational overhead.
