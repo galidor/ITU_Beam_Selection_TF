@@ -1,3 +1,4 @@
 # -*- coding: utf-8 -*-
-tensorflow
+tensorflow==2.2.0
+tensorflow_federated==0.16.1
 numpy
