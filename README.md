@@ -1,4 +1,4 @@
-# ITU Beam Selection Challenge
+# Federated mmWave Beam Selection Utilizing LIDAR Data
 
 ###### This repo contains the code for the paper <b>Federated mmWave Beam Selection Utilizing LIDAR Data</b>
 
@@ -27,7 +27,7 @@ There are 4 Python files in this repo, requirements.txt, and this README file:
 * beam_test_model.py - code that enables to test previously trained networks and generate .csv files with the predictions.
 
 ## Dataset
-In this work we use Raymobtime<sup>2</sup> dataset, which is a collection of realistic ray-tracing data obtained by simulating traffic in environment highly inspired by real world data. It utilizes SUMO for mobility simulations, Insite for ray-tracing, Cadmapper and Open Street Map for importing realistic outdoor scenarios. The dataset is divided into smaller sets, with different frequencies considered, various number of receivers, and environments. For our Challenge submission, we trained on the s008 dataset (we combined both training and validation subsets) and validated on s009. 
+In this work we use Raymobtime<sup>2</sup> dataset, which is a collection of realistic ray-tracing data obtained by simulating traffic in environment highly inspired by real world data. It utilizes SUMO for mobility simulations, Insite for ray-tracing, Cadmapper and Open Street Map for importing realistic outdoor scenarios. The dataset is divided into smaller sets, with different frequencies considered, various number of receivers, and environments. We trained our models on the s008 dataset (we combined both training and validation subsets) and validated on s009. 
 
 ## Model training
 In order to train our network, you need to run the following command:
@@ -68,6 +68,6 @@ Please note, that all the training and validation .npz files have to be copied t
 If you have any further questions related to this repo, feel free to contact me at mikolaj.jankowski17@imperial.ac.uk or raise an Issue within this repo. I'll do my best to reply as soon as possible.
    
 ## References
-1. Challenge website: https://www.itu.int/en/ITU-T/AI/challenge/2020/Pages/default.aspx
+1. ITU AI/ML in 5G Challenge website: https://www.itu.int/en/ITU-T/AI/challenge/2020/Pages/default.aspx
 2. Raymobtime dataset: https://www.lasse.ufpa.br/raymobtime/
 3. A. Klautau, P. Batista, N. González-Prelcic, Y. Wang and R. W. Heath Jr., “5G MIMO Data for Machine Learning: Application to Beam-Selection using Deep Learning” in 2018 Information Theory and Applications Workshop (ITA).
