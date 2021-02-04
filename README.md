@@ -1,20 +1,17 @@
 # ITU Beam Selection Challenge
 
-###### This repo contains our submission for the ITU Artificial Intelligence/Machine Learning in 5G Challenge<sup>1</sup>, particularly the ML5G-PHY [beam selection] task.
+###### This repo contains the code for the paper <b>Federated mmWave Beam Selection Utilizing LIDAR Data</b>
 
 ## Authors
-<b>Team Name:</b> Imperial_IPC1
 
-<b>Supervising faculty member</b>: Prof. Deniz Gunduz, Imperial College London, Email: d.gunduz@imperial.ac.uk
-
-<b>Team members</b>:
 * Dr. Mahdi Boloursaz Mashhadi (PostDoc Team Leader), Imperial College London, Email: m.boloursaz-mashhadi@imperial.ac.uk
-* Mr. Tze-Yang Tung, Imperial College London, Email: tze-yang.tung14@imperial.ac.uk
 * Mr. Mikolaj Jankowski, Imperial College London, Email: mikolaj.jankowski17@imperial.ac.uk
+* Mr. Tze-Yang Tung, Imperial College London, Email: tze-yang.tung14@imperial.ac.uk
 * Mr. Szymon Kobus, Imperial College London, Email: szymon.kobus17@imperial.ac.uk
+* <b>Supervisor</b>: Prof. Deniz Gunduz, Imperial College London, Email: d.gunduz@imperial.ac.uk
 
 ## Requirements installation
-I order to run our code, you need Tensorflow 2.0 and Numpy. In order to install them, simply run:
+I order to run our code, you need Python 3.7.9, Tensorflow 2.2.0, TFF 0.16.1 and Numpy. In order to install them, simply run:
 ```
 $ pip install -r requirements.txt
 ```
