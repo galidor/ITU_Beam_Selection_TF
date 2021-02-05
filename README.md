@@ -1,6 +1,6 @@
 # Federated mmWave Beam Selection Utilizing LIDAR Data
 
-###### This repo contains the code for the paper <b>Federated mmWave Beam Selection Utilizing LIDAR Data</b>
+###### This repo contains the code for the paper Federated mmWave Beam Selection Utilizing LIDAR Data
 
 ## Authors
 
@@ -68,6 +68,7 @@ Please note, that all the training and validation .npz files have to be copied t
 If you have any further questions related to this repo, feel free to contact me at mikolaj.jankowski17@imperial.ac.uk or raise an Issue within this repo. I'll do my best to reply as soon as possible.
    
 ## References
-1. ITU AI/ML in 5G Challenge website: https://www.itu.int/en/ITU-T/AI/challenge/2020/Pages/default.aspx
-2. Raymobtime dataset: https://www.lasse.ufpa.br/raymobtime/
-3. A. Klautau, P. Batista, N. González-Prelcic, Y. Wang and R. W. Heath Jr., “5G MIMO Data for Machine Learning: Application to Beam-Selection using Deep Learning” in 2018 Information Theory and Applications Workshop (ITA).
+1. M. B. Mashadi, M. Jankowski, T-Y. Tung, S. Kobus, D. Gunduz, “Federated mmWave Beam Selection Utilizing LIDAR Data”, arXiv:2102.02802, link: https://arxiv.org/abs/2102.02802
+2. ITU AI/ML in 5G Challenge website: https://www.itu.int/en/ITU-T/AI/challenge/2020/Pages/default.aspx
+3. Raymobtime dataset: https://www.lasse.ufpa.br/raymobtime/
+4. A. Klautau, P. Batista, N. González-Prelcic, Y. Wang and R. W. Heath Jr., “5G MIMO Data for Machine Learning: Application to Beam-Selection using Deep Learning” in 2018 Information Theory and Applications Workshop (ITA).
