@@ -1,17 +1,17 @@
 # Federated mmWave Beam Selection Utilizing LIDAR Data
 
-###### This repo contains the code for the paper Federated mmWave Beam Selection Utilizing LIDAR Data
+###### This repo contains the code for the paper Federated mmWave Beam Selection Utilizing LIDAR Data avilable at: https://arxiv.org/abs/2102.02802
 
 ## Authors
 
-* Dr. Mahdi Boloursaz Mashhadi (PostDoc Team Leader), Imperial College London, Email: m.boloursaz-mashhadi@imperial.ac.uk
+* Dr. Mahdi Boloursaz Mashhadi, Imperial College London, Email: m.boloursaz-mashhadi@imperial.ac.uk
 * Mr. Mikolaj Jankowski, Imperial College London, Email: mikolaj.jankowski17@imperial.ac.uk
 * Mr. Tze-Yang Tung, Imperial College London, Email: tze-yang.tung14@imperial.ac.uk
 * Mr. Szymon Kobus, Imperial College London, Email: szymon.kobus17@imperial.ac.uk
-* <b>Supervisor</b>: Prof. Deniz Gunduz, Imperial College London, Email: d.gunduz@imperial.ac.uk
+* Prof. Deniz Gunduz, Imperial College London, Email: d.gunduz@imperial.ac.uk
 
 ## Requirements installation
-I order to run our code, you need Python 3.7.9, Tensorflow 2.2.0, TFF 0.16.1 and Numpy. In order to install them, simply run:
+In order to run our code, you need Python 3.7.9, Tensorflow 2.2.0, TFF 0.16.1 and Numpy. In order to install them, simply run:
 ```
 $ pip install -r requirements.txt
 ```
@@ -65,7 +65,7 @@ Please note, that all the training and validation .npz files have to be copied t
 * lidar_input_test.npz and beams_output_test.npz from Raymobtime s009
 
 ## Questions?
-If you have any further questions related to this repo, feel free to contact me at mikolaj.jankowski17@imperial.ac.uk or raise an Issue within this repo. I'll do my best to reply as soon as possible.
+If you have any further questions related to this repo, feel free to contact us at {m.boloursaz-mashhadi, mikolaj.jankowski17}@imperial.ac.uk or raise an Issue within this repo. I'll do my best to reply as soon as possible.
    
 ## References
 1. M. B. Mashadi, M. Jankowski, T-Y. Tung, S. Kobus, D. Gunduz, “Federated mmWave Beam Selection Utilizing LIDAR Data”, arXiv:2102.02802, link: https://arxiv.org/abs/2102.02802
