@@ -65,7 +65,7 @@ Please note, that all the training and validation .npz files have to be copied t
 * lidar_input_test.npz and beams_output_test.npz from Raymobtime s009
 
 ## Questions?
-If you have any further questions related to this repo, feel free to contact us at {m.boloursaz-mashhadi, mikolaj.jankowski17}@imperial.ac.uk or raise an Issue within this repo. I'll do my best to reply as soon as possible.
+If you have any further questions related to this repo, feel free to contact us at {m.boloursaz-mashhadi, mikolaj.jankowski17}@imperial.ac.uk or raise an Issue within this repo. We will do our best to reply as soon as possible.
    
 ## References
 1. M. B. Mashadi, M. Jankowski, T-Y. Tung, S. Kobus, D. Gunduz, “Federated mmWave Beam Selection Utilizing LIDAR Data”, arXiv:2102.02802, link: https://arxiv.org/abs/2102.02802
