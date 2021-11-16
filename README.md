@@ -68,7 +68,7 @@ Please note, that all the training and validation .npz files have to be copied t
 If you have any further questions related to this repo, feel free to contact us at {m.boloursaz-mashhadi, mikolaj.jankowski17}@imperial.ac.uk or raise an Issue within this repo. We will do our best to reply as soon as possible.
    
 ## References
-1. M. B. Mashadi, M. Jankowski, T-Y. Tung, S. Kobus, D. Gunduz, “Federated mmWave Beam Selection Utilizing LIDAR Data”, arXiv:2102.02802, link: https://arxiv.org/abs/2102.02802
+1. M. B. Mashhadi, M. Jankowski, T. -Y. Tung, S. Kobus and D. Gündüz, "Federated mmWave Beam Selection Utilizing LIDAR Data," in IEEE Wireless Communications Letters, vol. 10, no. 10, pp. 2269-2273, Oct. 2021, doi: 10.1109/LWC.2021.3099136. Link: https://ieeexplore.ieee.org/document/9493715
 2. ITU AI/ML in 5G Challenge website: https://www.itu.int/en/ITU-T/AI/challenge/2020/Pages/default.aspx
 3. Raymobtime dataset: https://www.lasse.ufpa.br/raymobtime/
 4. A. Klautau, P. Batista, N. González-Prelcic, Y. Wang and R. W. Heath Jr., “5G MIMO Data for Machine Learning: Application to Beam-Selection using Deep Learning” in 2018 Information Theory and Applications Workshop (ITA).
